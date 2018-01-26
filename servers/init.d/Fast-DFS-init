@@ -1,0 +1,74 @@
+#!/bin/bash
+#
+# chkconfig: - 95 15 
+# description: fastdfs start/stop/status script
+
+# Source function library.
+. /etc/rc.d/init.d/functions
+
+NG_DIR=
+prog="fdfs"
+USAGE="Usage: $0 {\e[00;32mstart\e[00m|\e[00;31mstop\e[00m|\e[00;32mstatus\e[00m|\e[00;31mrestart\e[00m}"
+pid() {
+  echo `ps -ef | grep $prog | grep -v grep | tr -s " "|cut -d" " -f2`
+}
+
+start() {
+  pid=$(pid)
+  if [ -n "$pid" ];then
+    echo -e "\e[00;31m$prog is already running (pid: $pid)\e[00m"
+  else
+    echo -e "\e[00;32mStarting $prog\e[00m"
+    /usr/bin/fdfs_trackerd /etc/fdfs/tracker.conf
+    /usr/bin/fdfs_storaged /etc/fdfs/storage.conf
+    $NG_DIR/sbin/nginx
+    status
+  fi
+  return 0
+}
+
+status(){
+  pid=$(pid)
+  if [ -n "$pid" ];then
+    echo -e "\e[00;32m$prog is running with pid: $pid\e[00m"
+  else
+    echo -e "\e[00;31m$prog is not running\e[00m"
+  fi
+}
+
+stop() {
+  pid=$(pid)
+  if [ -n "$pid" ];then
+    echo -e "\e[00;31mStoping $prog\e[00m"
+    /usr/bin/fdfs_trackerd /etc/fdfs/tracker.conf stop
+    /usr/bin/fdfs_trackerd /etc/fdfs/tracker.conf stop
+    $NG_DIR/sbin/nginx -s stop
+  else
+    echo -e "\e[00;31m$prog is not running\e[00m"
+  fi
+  return 0
+}
+
+case $1 in
+        start)
+          start
+        ;;
+
+        stop)  
+          stop
+        ;;
+
+        restart)
+          stop
+          start
+        ;;
+
+        status)
+    status
+        ;;
+
+        *)
+    echo -e $USAGE
+        ;;
+esac    
+exit 0
