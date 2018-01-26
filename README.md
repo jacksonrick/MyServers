@@ -1,4 +1,5 @@
-#MyServers
+# MyServers
+
 服务器组件集成化安装
 
 在`oneinstack`基础上改进 https://oneinstack.com/
@@ -9,7 +10,7 @@ jdk | tomcat | nginx | mysql | php | redis | subversion | fdfs
 
 支持Linux CentOS 7 +
 
-####安装步骤
+#### 安装步骤
 
 * ./install.sh 安装，选择相应组件
 
@@ -21,7 +22,7 @@ jdk | tomcat | nginx | mysql | php | redis | subversion | fdfs
 
 > options.conf 组件安装目录配置
 
-####管理服务
+#### 管理服务
 
 * service nginx {start|stop|status|restart|reload}
 
@@ -37,7 +38,7 @@ jdk | tomcat | nginx | mysql | php | redis | subversion | fdfs
 
 * service svn {start|stop|status}
 
-####注意
+#### 注意
 `src`目录为项目所用到的安装包，由于包过大，请在百度网盘下载
 
 链接: https://pan.baidu.com/s/1eSTnXho 密码: 5kty
