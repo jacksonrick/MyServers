@@ -23,14 +23,21 @@ jdk | tomcat | nginx | mysql | php | redis | subversion | fdfs
 
 ####管理服务
 
-service nginx {start|stop|status|restart|reload}
-service mysqld {start|stop|restart|reload|status}
-service php-fpm {start|stop|restart|reload|status}
-service tomcat {start|stop|status|restart}
-service redis-server {start|stop|status|restart|reload}
-service fastdfs {start|stop|status}
-service svn {start|stop|status}
+* service nginx {start|stop|status|restart|reload}
+
+* service mysqld {start|stop|restart|reload|status}
+
+* service php-fpm {start|stop|restart|reload|status}
+
+* service tomcat {start|stop|status|restart}
+
+* service redis-server {start|stop|status|restart|reload}
+
+* service fastdfs {start|stop|status}
+
+* service svn {start|stop|status}
 
 ####注意
 `src`目录为项目所用到的安装包，由于包过大，请在百度网盘下载
+
 链接: https://pan.baidu.com/s/1eSTnXho 密码: 5kty
